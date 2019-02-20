@@ -1,6 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+//magic
+copy(v.begin(), v.end(), ostream_iterator<tipoDato>(cout, " "));
+
 // a % b (positive)
 int mod(int a, int b) {
   return ((a % b) + b) % b;
@@ -18,18 +21,18 @@ int lcm(int a, int b) {
 }
 
 // Bezout : d = ax + by
-int bezout(int a, int b, int *x, int *y) { 
-  if (a == 0) { 
-    *x = 0; 
-    *y = 1; 
-    return b; 
-  } 
+int bezout(int a, int b, int *x, int *y) {
+  if (a == 0) {
+    *x = 0;
+    *y = 1;
+    return b;
+  }
   int x1, y1;
-  int gcd = bezout(b%a, a, &x1, &y1); 
-  *x = y1 - (b/a) * x1; 
-  *y = x1; 
-  return gcd; 
-} 
+  int gcd = bezout(b%a, a, &x1, &y1);
+  *x = y1 - (b/a) * x1;
+  *y = x1;
+  return gcd;
+}
 
 // ax = b (mod n)
 vector<int> mod_equation(int a, int b, int n) {
