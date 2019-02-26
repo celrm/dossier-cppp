@@ -1,0 +1,135 @@
+\contentsline {chapter}{\numberline {1}Matem\IeC {\'a}ticas}{1}
+\ttl@starttoc {chapters@1}
+\contentsline {section}{\numberline {1.1}Sumas}{1}
+\contentsline {section}{\numberline {1.2}Teor\IeC {\'\i }a de n\IeC {\'u}meros}{1}
+\contentsline {subsection}{\texttt {teoriaDeNumeros.cpp}\hspace {0.2em}}{1}
+\contentsline {section}{\numberline {1.3}Polinomios}{3}
+\contentsline {subsection}{\texttt {horner.cpp}\hspace {0.2em}}{3}
+\contentsline {subsection}{\texttt {aintken.cpp}\hspace {0.2em}}{3}
+\contentsline {section}{\numberline {1.4}\IeC {\'A}lgebra}{3}
+\contentsline {subsection}{\texttt {matrices.cpp}\hspace {0.2em}}{3}
+\contentsline {subsection}{\texttt {gauss.cpp}\hspace {0.2em}}{4}
+\contentsline {subsection}{\numberline {1.4.1}Resoluci\IeC {\'o}n de recurrencias}{4}
+\contentsline {subsection}{\texttt {gaussInZM.cpp}\hspace {0.2em}}{4}
+\contentsline {subsection}{\texttt {recurrencias.cpp}\hspace {0.2em}}{4}
+\contentsline {section}{\numberline {1.5}B\IeC {\'u}squeda de ciclos}{5}
+\contentsline {subsection}{\texttt {ciclos.cpp}\hspace {0.2em}}{5}
+\contentsline {section}{\numberline {1.6}Combinatoria}{5}
+\contentsline {section}{\numberline {1.7}Fast Fourier Transform}{5}
+\contentsline {subsection}{\texttt {FFT.cpp}\hspace {0.2em}}{5}
+\contentsline {chapter}{\numberline {2}Geometr\IeC {\'\i }a}{6}
+\ttl@stoptoc {chapters@1}
+\ttl@starttoc {chapters@2}
+\contentsline {section}{\numberline {2.1}Trigonometr\IeC {\'\i }a}{6}
+\contentsline {section}{\numberline {2.2}Tri\IeC {\'a}ngulos}{6}
+\contentsline {section}{\numberline {2.3}Cuadril\IeC {\'a}teros}{6}
+\contentsline {subsection}{\numberline {2.3.1}Cuadril\IeC {\'a}teros c\IeC {\'\i }clicos}{6}
+\contentsline {section}{\numberline {2.4}Coordenadas esf\IeC {\'e}ricas}{7}
+\contentsline {section}{\numberline {2.5}Puntos y vectores}{7}
+\contentsline {subsection}{\texttt {Point.h}\hspace {0.2em}}{7}
+\contentsline {subsection}{\texttt {pointVec.cpp}\hspace {0.2em}}{7}
+\contentsline {section}{\numberline {2.6}Rectas y segmentos}{7}
+\contentsline {subsection}{\texttt {lines.cpp}\hspace {0.2em}}{7}
+\contentsline {subsection}{\texttt {lineIntersect.cpp}\hspace {0.2em}}{8}
+\contentsline {subsection}{\texttt {segmentIntersect.cpp}\hspace {0.2em}}{8}
+\contentsline {subsection}{\texttt {distToLine.cpp}\hspace {0.2em}}{8}
+\contentsline {subsection}{\texttt {distToSegment.cpp}\hspace {0.2em}}{8}
+\contentsline {section}{\numberline {2.7}C\IeC {\'\i }rculos}{8}
+\contentsline {subsection}{\texttt {Circles.cpp}\hspace {0.2em}}{8}
+\contentsline {subsection}{\texttt {tangentPoints.cpp}\hspace {0.2em}}{9}
+\contentsline {subsection}{\texttt {circle3pts.cpp}\hspace {0.2em}}{9}
+\contentsline {section}{\numberline {2.8}Pol\IeC {\'\i }gonos}{9}
+\contentsline {subsection}{\texttt {areaPerimeter.cpp}\hspace {0.2em}}{9}
+\contentsline {subsection}{\texttt {inPolygon.cpp}\hspace {0.2em}}{10}
+\contentsline {subsection}{\texttt {inConvexPolygon.cpp}\hspace {0.2em}}{10}
+\contentsline {subsection}{\texttt {cutPolygon.cpp}\hspace {0.2em}}{10}
+\contentsline {subsection}{\texttt {grahamScan.cpp}\hspace {0.2em}}{10}
+\contentsline {subsection}{\texttt {andrewsMonotoneChain.cpp}\hspace {0.2em}}{11}
+\contentsline {section}{\numberline {2.9}Misc.}{11}
+\contentsline {subsection}{\texttt {closestPoints.cpp}\hspace {0.2em}}{11}
+\contentsline {subsection}{\numberline {2.9.1}Great Circle distance}{11}
+\contentsline {subsection}{\texttt {sphericalDistance.cpp}\hspace {0.2em}}{11}
+\contentsline {subsection}{\texttt {SphericalDistance.cpp}\hspace {0.2em}}{11}
+\contentsline {chapter}{\numberline {3}Estructuras de datos}{11}
+\ttl@stoptoc {chapters@2}
+\ttl@starttoc {chapters@3}
+\contentsline {section}{\numberline {3.1}UFDS}{11}
+\contentsline {subsection}{\texttt {ufds.cpp}\hspace {0.2em}}{11}
+\contentsline {section}{\numberline {3.2}Fenwick Tree}{12}
+\contentsline {subsection}{\texttt {FenwickTree.cpp}\hspace {0.2em}}{12}
+\contentsline {section}{\numberline {3.3}Segment Tree}{12}
+\contentsline {subsection}{\texttt {SegmentTree.cpp}\hspace {0.2em}}{12}
+\contentsline {chapter}{\numberline {4}Grafos}{13}
+\ttl@stoptoc {chapters@3}
+\ttl@starttoc {chapters@4}
+\contentsline {section}{\numberline {4.1}Recorridos}{13}
+\contentsline {subsection}{\texttt {dfs.cpp}\hspace {0.2em}}{13}
+\contentsline {subsection}{\texttt {bfs.cpp}\hspace {0.2em}}{13}
+\contentsline {subsection}{\texttt {floodfill.cpp}\hspace {0.2em}}{13}
+\contentsline {subsection}{\numberline {4.1.1}Graph Check}{14}
+\contentsline {subsection}{\texttt {graphCheck.cpp}\hspace {0.2em}}{14}
+\contentsline {subsection}{\texttt {bipartiteGraphCheck.cpp}\hspace {0.2em}}{14}
+\contentsline {subsection}{\numberline {4.1.2}Articulation points and bridges en grafos no dirigidos}{14}
+\contentsline {subsection}{\texttt {articulationPointsAndBridges.cpp}\hspace {0.2em}}{14}
+\contentsline {section}{\numberline {4.2}SSSP}{15}
+\contentsline {subsection}{\texttt {dijkstra.cpp}\hspace {0.2em}}{15}
+\contentsline {subsection}{\texttt {bellmanFord.cpp}\hspace {0.2em}}{15}
+\contentsline {section}{\numberline {4.3}APSP}{15}
+\contentsline {subsection}{\texttt {floyd.cpp}\hspace {0.2em}}{15}
+\contentsline {section}{\numberline {4.4}MST}{16}
+\contentsline {subsection}{\texttt {kruskal.cpp}\hspace {0.2em}}{16}
+\contentsline {section}{\numberline {4.5}SCC}{16}
+\contentsline {subsection}{\texttt {tarjan.cpp}\hspace {0.2em}}{16}
+\contentsline {subsection}{\texttt {kosaraju.cpp}\hspace {0.2em}}{16}
+\contentsline {section}{\numberline {4.6}TopoSort}{17}
+\contentsline {subsection}{\texttt {kahn.cpp}\hspace {0.2em}}{17}
+\contentsline {section}{\numberline {4.7}MaxFlow}{17}
+\contentsline {subsection}{\texttt {edmondsKarp.cpp}\hspace {0.2em}}{17}
+\contentsline {section}{\numberline {4.8}Grafos eulerianos}{17}
+\contentsline {subsection}{\texttt {eulerTour.cpp}\hspace {0.2em}}{18}
+\contentsline {section}{\numberline {4.9}Matchings}{18}
+\contentsline {subsection}{\numberline {4.9.1}Grafos bipartitos}{18}
+\contentsline {subsection}{\texttt {bergeMcbm.cpp}\hspace {0.2em}}{18}
+\contentsline {chapter}{\numberline {5}DP}{18}
+\ttl@stoptoc {chapters@4}
+\ttl@starttoc {chapters@5}
+\contentsline {section}{\numberline {5.1}Recurrencias de problemas cl\IeC {\'a}sicos}{18}
+\contentsline {section}{\numberline {5.2}LIS}{19}
+\contentsline {subsection}{\texttt {lis.cpp}\hspace {0.2em}}{19}
+\contentsline {section}{\numberline {5.3}Kadane}{19}
+\contentsline {subsection}{\texttt {kadane.cpp}\hspace {0.2em}}{19}
+\contentsline {chapter}{\numberline {6}Strings}{20}
+\ttl@stoptoc {chapters@5}
+\ttl@starttoc {chapters@6}
+\contentsline {section}{\numberline {6.1}KMP}{20}
+\contentsline {subsection}{\texttt {KMP.cpp}\hspace {0.2em}}{20}
+\contentsline {section}{\numberline {6.2}Suffix Array}{20}
+\contentsline {subsection}{\texttt {SuffixArray.cpp}\hspace {0.2em}}{20}
+\contentsline {section}{\numberline {6.3}Aho-Corasick}{21}
+\contentsline {subsection}{\texttt {Aho-Corasick.cpp}\hspace {0.2em}}{21}
+\contentsline {section}{\numberline {6.4}Manacher}{22}
+\contentsline {subsection}{\texttt {Manacher.cpp}\hspace {0.2em}}{22}
+\contentsline {chapter}{\numberline {7}Bits}{22}
+\ttl@stoptoc {chapters@6}
+\ttl@starttoc {chapters@7}
+\contentsline {section}{\texttt {bits.cpp}\hspace {0.2em}}{22}
+\contentsline {chapter}{\numberline {8}Misc}{22}
+\ttl@stoptoc {chapters@7}
+\ttl@starttoc {chapters@8}
+\contentsline {section}{\texttt {cositas.cpp}\hspace {0.2em}}{22}
+\contentsline {section}{\numberline {8.1}Calendario}{23}
+\contentsline {subsection}{\texttt {calendar.cpp}\hspace {0.2em}}{23}
+\contentsline {section}{\numberline {8.2}Greedy}{24}
+\contentsline {subsection}{\texttt {intervalCovering.cpp}\hspace {0.2em}}{24}
+\contentsline {section}{\numberline {8.3}2SAT}{24}
+\contentsline {subsection}{\texttt {2SAT.cpp}\hspace {0.2em}}{24}
+\contentsline {chapter}{\numberline {9}Java}{24}
+\ttl@stoptoc {chapters@8}
+\ttl@starttoc {chapters@9}
+\contentsline {section}{\texttt {Main.java}\hspace {0.2em}}{24}
+\contentsline {chapter}{\numberline {10}Anexo}{25}
+\ttl@stoptoc {chapters@9}
+\ttl@starttoc {chapters@10}
+\contentsline {subsection}{\numberline {10.0.1}Tablas}{25}
+\contentsline {subsection}{\numberline {10.0.2}Tu error est\IeC {\'a} aqu\IeC {\'\i }}{25}
+\contentsfinish 

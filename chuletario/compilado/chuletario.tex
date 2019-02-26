@@ -1,0 +1,28 @@
+\documentclass[11pt, a4paper, notitlepage]{report}
+\usepackage{kactlpkg}
+\usepackage{amsthm}
+\date{\today}
+\edition{"One Last Time" Edition} % No sé qué es esto.
+\kactlcontentdir{../content}
+
+\begin{document}
+	\maketeampage{I'm So Meta Even This Acronym}{David Pérez, Pablo Hidalgo, Mingxiao Guo}{ACM-ICPC SWERC 2017}{26 de noviembre, 2017}
+	%\maketeampage{0.5 float en el agua}{Elena Pérez, Rafael Herrera, Enrique %Román}{ACM-ICPC SWERC 2017}{26 de noviembre, 2017}
+	
+	\begin{multicols*}{2}
+		\setcounter{tocdepth}{0}
+		\thispagestyle{fancy}
+		
+		\kactlchapter{matematicas} 
+		\kactlchapter{geometria}
+		\kactlchapter{estructuras-de-datos} 
+		\kactlchapter{grafos}
+		\kactlchapter{dp}
+		\kactlchapter{strings}
+		\kactlchapter{bits}
+		\kactlchapter{misc}
+		\kactlchapter{java}
+		\kactlchapter{anexo}
+	\end{multicols*}
+
+\end{document}
