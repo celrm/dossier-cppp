@@ -1,0 +1,114 @@
+\chapter{Grafos}
+
+\section{Recorridos}
+	\chuletarioimport{dfs.cpp}{}%
+	[][][\bigo{V + E}]
+	
+	\chuletarioimport{bfs.cpp}{}% multi-source : UVa 11101
+	[Recorrido en anchura. También resuelve SSSP si el grafo es sin pesos. Multi-source BFS: mete todos los nodos fuentes a una \texttt{queue}.]%
+	[][\bigo{V + E}]
+	
+	\chuletarioimport{floodfill.cpp}{}%
+	[Hace floodfill de la componente conexa del vértice (\texttt{r}, \texttt{c}) de color \texttt{c1} coloreándola de color \texttt{c2}.]
+\medskip
+\subsection{Graph Check}
+	\chuletarioimport{graphCheck.cpp}{}%
+	[Clasificación de tipos de aristas: tree edge (una arista del DFS spanning tree), back edge (una arista que forma parte de un ciclo) y forward cross edge (una arista de un vértice \texttt{EXPLORED} a un vértice \texttt{VISITED}).]
+	
+	\chuletarioimport{bipartiteGraphCheck.cpp}{}%
+	[Intenta bicolorear un grafo para detectar si es bipartito.]
+
+\medskip
+\subsection{Articulation points and bridges en grafos no dirigidos}
+	En un grafo no dirigido $G$, un \textit{articulation point} es un vértice que al ser eliminado (junto con sus aristas) desconecta $G$.\\
+	Un \textit{bridge} es una arista que al ser eliminada desconecta $G$.
+
+	\chuletarioimport{articulationPointsAndBridges.cpp}{}%
+	[Encuentra articulation points and bridges. \texttt{dfs\_num[u]} es el número de iteración en el que se visita $u$ \textit{por primera vez}. \texttt{dfs\_low[u]} es el valor de \texttt{dfs\_num[v]} más bajo de un vértice $v$ alcanzable desde el subárbol de expansión del recorrido DFS que empieza en $u$.\\
+	\textbf{Caso especial:} la raíz del árbol DFS (\texttt{dfsRoot}) es un articulation point si y sólo si tiene más de un hijo (\texttt{rootChildren > 1}).]%
+	[][\bigo{V + E}]
+
+\section{SSSP}
+	\chuletarioimport{dijkstra.cpp}{}%
+	[SSSP desde el vértice \texttt{s} en un grafo dirigido con pesos \textit{sin ciclos de coste negativo}. \texttt{adjList[u][j]} es un par (\texttt{w}, \texttt{v}) donde \texttt{w} es el peso de la arista $u \rightarrow v$.]%
+	[][\bigo{(V + E) \log V}, probablemente TLE si $V, E > 300K$.]
+	
+	\chuletarioimport{bellmanFord.cpp}{}%
+	[SSSP desde el vértice \texttt{s} en un grafo dirigido con pesos. Devuelve si existe al menos un ciclo de coste negativo.\\
+	Si quieres saber los vértices que están en un ciclo de coste negativo, puedes encontrar las SCCs de los vértices $v$ con \texttt{relax[v] = 1}.\\
+	Si quieres saber los vértices hasta los que puedes llegar con coste negativo, recorre el grafo desde los vértices $v$ con \texttt{relax[v] = 1}.]%
+	[][\bigo{VE}, probablemente TLE si $VE > 10^6$.]
+
+\section{APSP}
+	\chuletarioimport{floyd.cpp}{}%
+	[APSP en un grafo dirigido con pesos en matriz de adyacencia \texttt{adjMat} de \texttt{N} vértices.\\
+	Asegúrate de inicializar \texttt{adjMat[i][i] = 0} y \texttt{adjMat[i][j] = INF} si no existe la arista $i \rightarrow j$ (no uses \texttt{INT\_MAX} por overflow).\\
+	La matriz \texttt{pi} sirve para imprimir el camino mínimo: \texttt{pi[i][j]} es el vértice anterior a $j$ en un camino mínimo de $i$ a $j$; $\texttt{i} \rightarrow ... \rightarrow$ \texttt{pi[i][j]} $\rightarrow$ \texttt{j}.]%
+	[][\bigo{V^3}, probablemente TLE si $V > 400$]
+
+\section{MST}
+	\chuletarioimport{kruskal.cpp}{}%
+	[Añade aristas vorazmente al MST hasta que todos los vértices están en el MST.\\
+	Ordena \texttt{edgeList}. Devuelve \texttt{INT\_MAX} si el grafo no es conexo.]%
+	[][\bigo{E \log E} $\approx$ \bigo{E \log V^2} = \bigo{2E \log V} = \bigo{E \log V}]
+	
+	Problema del \textit{minimax} (análogamente se define \textit{maximin}): dados dos vértices de un grafo $i$ y $j$, considera todos los caminos entre ellos, y asocia a cada camino un coste: el peso máximo de entre todas las aristas que forman el camino. ¿Cuál es el menor coste de estos caminos? Solución: un camino con coste mínimo es el que une $i$ y $j$ en el MST del grafo.
+
+\section{SCC}
+	\chuletarioimport{tarjan.cpp}{}%
+	[Calcula las SCCs de un grafo dirigido y las guarda en \texttt{sccs}. \texttt{cur\_scc[v]} $= 1 \iff v$ está en la SCC que se está explorando actualmente, cuyos vértices se guardan en la ``pila'' \texttt{S}. Un vértice $v$ es el ``inicio'' (según el recorrido del DFS) de una SCC $\iff$ \texttt{dfs\_low[v]} $=$ \texttt{dfs\_num[u]}.]%
+	[][\bigo{E + V}]
+	
+	\chuletarioimport{kosaraju.cpp}{}%
+	[Calcula el número de SCCs de un grafo dirigido. Dos vértices $u$ y $v$ están en la misma SCC si y sólo si se puede llegar desde $u$ a $v$ en el grafo original y desde $v$ a $u$ en el grafo traspuesto mediante un DFS. Para contar las SCC bien se inicia el recorrido en el grafo traspuesto desde los vértices que van ``antes'' en el grafo original, por lo que se calcula un toposort antes (no es un toposort estricto pues el grafo podría ser cíclico).]%
+	[][\bigo{2(E + V)}]
+
+\section{TopoSort}
+
+	Véase DFS.
+
+	\chuletarioimport{kahn.cpp}{}%
+	[Calcula un toposort de un grafo dirigido sin pesos. Devuelve \texttt{true} si el grafo es cíclico.]% Ver CF 825E
+	[][\bigo{V + E}]
+
+\section{MaxFlow}
+	\chuletarioimport{edmondsKarp.cpp}{}%
+	[Calcula el flujo máximo en una red de flujo con un único source node \texttt{s} y único sink node \texttt{t} implementando el método de Ford Fulkerson: usa BFS para encontrar un augmenting path. La matriz \texttt{res} contiene las capacidades residuales y se inicializa con las capacidades de las aristas. Pon en \texttt{adjList} las aristas en ambos sentidos.]%
+	[][\bigo{VE^2}]
+
+\section{Grafos eulerianos}
+
+	Un grafo no dirigido
+	\begin{itemize}
+		\item tiene un \textbf{ciclo euleriano} si y sólo si todos los vértices tienen grado par y todos los vértices con grados no nulo pertenecen a la misma componente conexa.
+		\item tiene un \textbf{ciclo euleriano} si y sólo si se puede descomponer en edge-disjoint cycles y todos los vértices con grado no nulo pertenecen a la misma componente conexa.
+		\item tiene un \textbf{camino euleriano} si y sólo si tiene exactamente cero o dos vértices con grado impar y los vértices con grado no nulo pertenecen a la misma componente conexa.
+	\end{itemize}
+
+	Un grafo dirigido
+	\begin{itemize}
+		\item tiene un \textbf{ciclo euleriano} si y sólo si cada vértice tiene \texttt{inDeg} = \texttt{outDeg} y todos los vértices con grado no nulo pertenecen a la misma componente fuertemente conexa.
+		\item tiene un \textbf{ciclo euleriano} si y sólo si se puede descomponer en edge-disjoint cycles y todos los vértices con grado no nulo pertenecen a la misma componente conexa.
+		\item tiene un \textbf{camino euleriano} si y sólo si tiene a lo sumo un vértice con \texttt{outDeg - inDeg} $= 1$, a lo sumo un vértice con \texttt{inDeg - outDeg} $= 1$, los demás vértices tienen \texttt{inDeg} $=$ \texttt{outDeg}, y todos los vértices con grado no nulo pertenecen a la misma componente conexa del grafo no dirigido subyacente.
+	\end{itemize}
+
+	\chuletarioimport{eulerTour.cpp}{}%
+
+\section{Matchings}
+	\begin{description} 
+		\item[Matching] Un matching (o independent edge set) de un grafo $G$ es un conjunto de aristas que no tienen vértices en común.
+		\item[Augmenting path] Dado un matching $M$ en un grafo $G$, un augmenting path (camino de $M$-aumento) es un camino que empieza y acaba en unmatched vertices y cuyas aristas alternan entre aristas que están y no esan en $M$.
+		\item[Lema de Berge] Un matching $M$ es máximo (contiene la mayor cantidad de aristas) si y sólo si no tiene un augmenting path.
+		\item[Vertex cover] Un vertex cover es un conjunto de vértices tales que cada arista del grafo es incidente a al menos un vértice del conjunto.
+		\item[Conjunto independiente de vértices (independent set)] Es un conjunto de vértices tales que no existe ninguna arista entre ellos.	
+	\end{description}
+
+	\subsection{Grafos bipartitos}
+		\begin{description}
+			\item[Teorema de König] En un grafo bipartito, el número de aristas en un matching máximo es igual al número de vértices en un recubrimiento mínimo de vértices (i.e. MaxCBM = MinVC).
+			\item[MaxIS + MaxCBM = V] en grafos bipartitos.
+		\end{description}
+	
+		\chuletarioimport{bergeMcbm.cpp}{}%
+		[Calcula un matching máximo en un grafo bipartito usando el lema de Berge. \texttt{M} es el tamaño de la partición izquierda del grafo, \texttt{N} la de la derecha. \texttt{adjList} es un grafo dirigido \textbf{de tamaño \texttt{M}} con las aristas dirigidas desde la partición izquierda a la derecha. \texttt{match} indica con qué vértices de la partición izquierda están emparejados los vértices de la partición derecha; tiene tamaño \texttt{N + M} pero sólo se indexa con los vértices de la partición derecha.]%
+		[][\bigo{VE}]

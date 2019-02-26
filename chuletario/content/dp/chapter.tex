@@ -1,0 +1,47 @@
+\chapter{DP}
+
+\section {Recurrencias de problemas clásicos}
+\begin{description}
+	\item[LIS] 
+	1- $LIS(0) = 1$. 
+	2- $LIS(i) = max(LIS(j) + 1), \forall j \in [0..i-1]$ and $ A[j] < A[i]$
+	
+	\item[Mochila]
+	1- $val(id, 0) = 0$ , cannot take anything else \\
+	2- $val(n, remW) = 0$ , considered all items \\
+	3- if $W[id] > remW$, we have no choice but to ignore this item: 
+	$val(id, remW) = val(id + 1, remW)$ \\
+	4- if $W[id] \le remW$, we have two choices: ignore or take this item; we take the maximum:
+	$val(id, remW) = max(val(id + 1, remW), V[id] + val(id + 1, remW - W[id]))$ 
+	
+	\item[Coin Change]
+	1- $change(0) = 0$ . 
+	2- $change(< 0) = \infty$  \\ 
+	3- $change(value) = 1 + min(change(value - coinValue[i])) \forall i \in [0..n-1]$ 
+	
+	\item [Ways Coin Change]
+	1- $ways(type, 0) = 1$ , one way, use nothing \\
+	2- $ways(type, <0) = 0$ , no way, we cannot reach negative value \\ 
+	3- $ways(n, value) = 0$ , no way, we have considered all coin types $\in [0..n-1]$ \\ 
+	4- $ways(type, value) = ways(type + 1, value) + ways(type, value - coinValue[type]) $ , take or ignore this coin type
+	
+	\item[TSP]
+	State: tsp(currentPosition, visited), \bigo{n^{2}2^{n}} \\
+	1- $tsp(pos, 2n-1) = dist[pos][0]$ , return to starting city \\ 2- $tsp(pos, mask) = min(dist[pos][nxt] + tsp(nxt, mask | (1 << nxt))) $, $\forall nxt \in [0..n-1], nxt \neq pos,$ and $(mask \& (1 << nxt))$ is $‘0’$ (turned off)
+	
+	
+\end{description}
+
+\section{LIS}
+\chuletarioimport{lis.cpp}{}%
+	[Devuelve una LIS de la secuencia dada en el vector \texttt{a}.\\
+	 En concreto, devuelve la última que aparece.\\
+	 \texttt{L[i]} es el valor más pequeño en el que acaban todas las LISes de longitud $i + 1$.\\
+	 Si quieres saber la longitud de la LIS en el intervalo $[0, i]$, lleva otro array, \texttt{lisl[]}, y en el bucle haz \texttt{lisl[i] = pos + 1}.\\
+	 Si quieres saber la LDS puedes multiplicar el vector por $-1$ o leerlo del final hacia el principio.\\
+	 Si quieres saber la longest non-decreasing subsequence, cambia \texttt{lower\_bound} por \texttt{upper\_bound} restando uno (o algo así).][][\bigo{n \log k}, \text{donde $k$ es la longitud de una LIS.}]
+
+\section {Kadane}
+\chuletarioimport{kadane.cpp}{}%
+[Halla la suma máxima de un intervalo en un array (1D) o de un subrectángulo en un rectángulo (2D). La solución naíf de hallar las sumas acumuladas (\bigo{n^2}) y luego mover cuatro índices (\bigo{n^4}) suele ser suficiente si $n \leq 100$.][][1D: $\bigo{n}$, 2D: $\bigo{n^{3}}$]
+

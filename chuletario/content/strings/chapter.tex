@@ -1,0 +1,23 @@
+\chapter{Strings}
+
+\section{KMP}
+\chuletarioimport{KMP.cpp}{}%
+	[Encuentra un patrón en un texto.][p = patrón; t=texto; kmpPreprocess(); kmpSearch();][\bigo{n+m}][]	
+	
+\section{Suffix Array}
+\chuletarioimport{SuffixArray.cpp}{{1-126}}%
+[Construcción del Suffix Array y varias funcionalidades][][][]
+
+\section{Aho-Corasick}
+\chuletarioimport{Aho-Corasick.cpp}{{300-370}}%
+	[Para encontrar varios patrones en un mismo texto. También construye un autómata.]%
+	[searchWords(patterns, text)]%
+	[Lineal en el tamaño de la entrada]%
+	[]
+	
+\section{Manacher}
+\chuletarioimport{Manacher.cpp}{{9-21}}%
+	[Procesa un string, encontrando toda la información sobre los palíndromos que tiene dentro. Si alrededor de la posición i hay un pal. de longitud impar n: p[1][i] = (n-1)/2. Si alrededor del hueco entre las posiciones i, i+1 hay un palíndromo de longitud par n: p[0][i] = n.][][\bigo{n}][]
+
+	
+	

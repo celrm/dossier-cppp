@@ -1,0 +1,136 @@
+
+\newtheorem*{teo}{\emph{$T^a$}}
+\newtheorem*{prop}{Prop}
+
+\chapter{Matemáticas}
+
+\section{Sumas}
+\[ r^a + r^{a+1} + \dots + r^{b} = \frac{r^{b+1} - r^a}{r - 1}, r \neq 1 \]
+\begin{align*}
+	\sum_{k = 1}^{n} k &= \frac{n(n+1)}{2} \\
+	\sum_{k = 1}^{n} k^2 &= \frac{n(2n+1)(n+1)}{6} \\
+	\sum_{k = 1}^{n} k^3 &= \left( \sum_{k = 1}^{n} k^2 \right) ^2 \\
+	\sum_{k = 1}^{n} k^4 &= \frac{n(n+1)(2n+1)(3n^2 + 3n - 1)}{30} \\
+\end{align*}
+
+La suma de la progresión aritmética $a_n = a_1 + (n - 1)d$ es
+
+\[ S_n = \frac{n}{2} (2 a_1 + (n - 1)d) = \frac{n}{2}(a_1 + a_n) \]
+
+La suma de la progresión geométrica $a_n = ar^n$ es
+
+\[ \mathcal{S}_n = a \left( \frac{1 - r^n}{1 - r} \right), r \neq 1 \]
+
+\section{Teoría de números}
+\begin{description}
+	\item[Ec. Diofántica lineal]
+		Sea $ax+by=c$ una ED, y $d=gcd(a,b)$.
+		La ecuación tiene solución sii $d \mid c$, y esa solución es $(x,y)=(x_0+tb/d, y_0+ta/d)$,
+		con t entero. Para encontrar $x_0,y_0$ vale con usar el
+		algoritmo de Euclides extendido, para obtener $ax_0+by_0=d$ y multiplicar
+		ambos valores resultantes por $c/d$.
+	\item[Teorema chino de los restos]
+		El sistema $x\equiv a_i \pmod{m_i}$ con $i\in 1,\dots,n$ y $m_i$ primos dos a dos
+		tiene una única solución módulo $M=m_1m_2\dots m_n$. Si $b_i$ es la inversa de $M/m_n \pmod{M}$
+		entonces la solución es $x\equiv a_1b_1M/m_1+\dots+a_nb_nM/m_n \pmod{M}$.
+	\item[Suma y cuenta de divisores]
+		Si $x=p_1^{\alpha_1}\dots p_k^{\alpha_k}$ entonces la suma de divisores es
+		$S=(1+p_1+\dots+p_1^{\alpha_1})\dots*(1+p_k+\dots+p_k^{\alpha_k})$
+		y su número de divisores es $C=(1+\alpha _1)\dots(1+\alpha_k)$.
+	\item[Función $\varphi$ de Euler]
+		La función $\varphi(n)$ devuelve el número de números coprimos con n menores que n. Se calcula como
+		$\varphi(p_1^{\alpha_1}p_2^{\alpha_2}\dots p_k^{\alpha_k})=(p_1-1)p_1^{\alpha_1-1}(p_2-1)p_2^{\alpha_2-1}\dots (p_k-1)p_k^{\alpha_k-1}$.
+		Tiene la propiedad de que si a,n primos entre sí, $a^{\varphi(n)}\equiv 1 \pmod{n}$.
+	\item[Acotación de primos]
+		$n/\ln(n)<prim(n)<1.26 n/\ln(n)$ Donde $prim(n)$ es el número de primos menores que $n$.
+	\item[Grafo planar (fórmula de Euler)]
+		\[v - e + f_1 = 2\]
+		\[v - e + f_2 - k = 1\] 
+		
+		donde
+		\begin{align*}
+			v &= \text{número de vértices}\\
+			e &= \text{número de aristas}\\
+			f_1 &= \text{número de caras internas}\\
+			f_2 &= 1 + f_1 \quad \text{(``fondo'' + caras internas)}\\
+			k &= \text{número de componentes conexas}
+		\end{align*}
+\end{description}
+
+
+\chuletarioimport{teoriaDeNumeros.cpp}{{18-186}}%
+
+
+\section{Polinomios}
+	\chuletarioimport{horner.cpp}{}%
+	[Evalúa el polinomio \texttt{pol} $\equiv$ \texttt{[$a_n, a_{n-1}, \dots, a_1, a_0$]} $\equiv a_nx^n + a_{n-1}x^{n-1} + \dots + a_1x + a_0$ en el punto \texttt{x}.]%
+	[][\bigo{n}]
+	
+	\chuletarioimport{aintken.cpp}{}%
+	[Interpolación de polinomios por el método de Aintken.]
+
+\section{Álgebra}
+TODO: rotar y reflejar arrays2d.
+
+	\chuletarioimport{matrices.cpp}{{7-49}}%
+		[Operaciones básicas con matrices: suma, multiplicación, potencia][][Suma: $\bigo{n^{2}}$, multiplicación: $\bigo{n^{3}}$, potencia: $\bigo{n^{3} \log n}$]
+	
+	\chuletarioimport{gauss.cpp}{}%
+		[Resolución de sistemas de ecuaciones por el método de Gauss. \\
+		La función Gauss: hace gauss en m y devuelve el rango de la matriz sin ampliar, y en rangoamp el de la ampliada. De paso devuelve también el determinante de la matriz (si no es cuadrada pasar del valor devuelto) Usa abs de \texttt{cmath}, con \texttt{double}s. \\ Función resuelve: Resuelve un sist de ec lineales, suponiendo que sea compatible determinado y que se haya hecho gauss anteriormente (m escalonada) (La ultima columna de m son los lados derechos de las igualdades)][][$\bigo{x^{2}*y}$ para una matriz $y \times x$.]
+	
+\subsection{Resolución de recurrencias}
+	\chuletarioimport{gaussInZM.cpp}{{8-34}}%
+		[Otro método de Gauss para resolver sistemas de ecuaciones, esta vez en módulo $M$. Resuelve el sistema $ax = b$ con $n$ ecuaciones y \texttt{col} incógnitas.][][$\bigo{n^{2} \texttt{col}}$]
+
+	\chuletarioimport{recurrencias.cpp}{}%
+		[Calcula x[i], donde x esta definida por la recurrencia x[i] = ini[i], para \\ 0 $\le$ i $<$ n = ini.size() = coef.size(); \\ x[i+1] = coef[0] * x[i] + coef[1] * x[i-1] + ... + coef[n-1] * x[i-n+1]][][$\bigo{n^3 \log i}$]
+
+\section{Búsqueda de ciclos}
+	\chuletarioimport{ciclos.cpp}{{14-55}}%
+		[Dada una función $f$ y un valor inicial $x_{0}$, encontrar $\mu$, $\lambda$, que son los menores números que cumplen $x_{\mu} = x_{\mu + \lambda}$. En este sentido, encontramos el ciclo que produce esta función: $\mu$ es el comienzo del ciclo y $\lambda$, su longitud. \\ Se presentan dos algoritmos: Floyd y Brent (un poco más eficiente en teoría)][][$\bigo{\mu + \lambda}$][$\bigo{1}$]
+
+\section{Combinatoria}
+
+\begin{description}
+	\item[Fibonnacci]
+	Tienen pinta: $F_0=0, F_1=1, F_n=F_{n-1}+F_{n-2}$. Se pueden calcular por
+	DP, o por la fórmula de Binet: $F_n=\frac{\phi^n-(-\phi)^{-n}}{\sqrt{5}}$ con $\phi=\frac{1+\sqrt{5}}{2}$.
+	También por la fórmula matricial $\left(\begin{matrix} 1 & 1 \\ 1 & 0 \end{matrix}\right)^n=
+	\left(\begin{matrix} F_{n+1} & F_n \\ F_n & F_{n-1} \end{matrix}\right)$.
+	\begin{teo}[Zeckendorf] Todos los naturales se pueden escribir de manera única como suma de
+		fibonaccis distintos sin tener dos consecutivos.
+	\end{teo}
+	\begin{teo}[Pisano] Los últimos un/dos/tres/cuatro dígitos de la serie se repiten con frecuencias
+		60/300/1500/15000.
+	\end{teo}
+	\item[Coeficientes binomiales]
+	Tienen pinta $\binom{n}{k}=\frac{n!}{(n-k)!k!}$. Se calculan por dp: $\binom{n}{0}=\binom{n}{n}=1$,
+	$\binom{n}{k}=\binom{n-1}{k-1}+\binom{n-1}{k}$. Representan formas de tomar $k$ elementos de un
+	conjunto con $n$. Además:
+	\begin{prop}Número de formas de tomar un multiconjunto de tamaño $k$ de un conjunto de $n$: $\binom{n+k-1}{k}$\end{prop}
+	\begin{prop}Número de tuplas de $n$ enteros positivos con suma $s$: $\binom{s-1}{n-1}$. Con no negativos: $\binom{s+n-1}{n-1}$
+	\end{prop}
+	\item[Coeficientes multinomiales]
+	$\binom{n}{k_1,\ldots,k_m}=\frac{n!}{k_1!\ldots k_m!}=\prod^{m}_{i = 1}\binom{\sum^{i}_{j = 1}k_j}{k_i}$
+	\item[Números de Catalan]
+	Tienen pinta $C_n=\binom{2n}{n}/(n+1)$. Se calculan por DP: $C_n=C_{n-1}\frac{2n(2n-1)}{(n+1)n}$. $C_n$ es el:
+		\begin{itemize}
+			\item \# de formas de poner $n$ pares de paréntesis equilibrados.
+			\item \# de árboles binarios con $n + 1$ elementos.
+			\item \# de triangulaciones de un polígono de $n + 2$ lados.
+			\item \# de caminos que van de esquina a esquina sin cruzar la diagonal principal.
+			\item \# de permutaciones de de longitud $n$ que no contienen una subsecuencia creciente de longitud 3.
+		\end{itemize}
+	\item[Derangements]
+	Permutaciones de $n$ elementos sin puntos fijos. $D_0=1$, $D_1=0$, $D_n=(n-1)(D_{n-1}+D_{n-2})$
+	\item[Fórmula de Cayley]
+	Hay $n^{n-2}$ árboles de recubrimiento en un grafo completo de $n$ vértices. En un grafo
+	bipartito completo son $m^{n-1}n^{m-1}$.
+\end{description}
+
+\section{Fast Fourier Transform}
+\chuletarioimport{FFT.cpp}{{11-36}}%
+	[Calcula el transformado y el inverso de un polinomio. Para multiplicar dos polinomios:
+	$a*b = F^{-1}\{F\{a\}*F\{b\}\} $][fft(a, 1) $\equiv F\{a\}$; fft(a, -1) $\equiv F^{-1}\{a\}$. Incluye <complex>][\bigo{n \log n}][]
+	
