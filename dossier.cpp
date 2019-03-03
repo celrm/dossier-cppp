@@ -2,7 +2,8 @@
 using namespace std;
 
 //magic
-copy(v.begin(), v.end(), ostream_iterator<tipoDato>(cout, " "));
+copy(v.begin(), v.end() - 1,
+ ostream_iterator<tipoDato>(cout, " "));
 
 // a % b (positive)
 int mod(int a, int b) {
@@ -65,8 +66,6 @@ void linear_equation(int a, int b, int c, int & x, int & y) {
   }
 }
 
-¬\pagebreak¬
-
 // Eratóstenes
 vector<int> primes(int n) {
   vector<bool> v(n, true);
@@ -93,3 +92,118 @@ vector<int> divisors(int n, vector<int> const& prim) {
     else ++i;
   }
 }
+¬\pagebreak¬
+//Busqueda en profundidad:
+void dfs(int u, vvi &adjList, vi &dfs_num, vi &topo) {
+  dfs_num[u] = 1;
+  for (int v : adjList[u]) {
+    if (dfs_num[v] == 0)
+      dfs(v, adjList, dfs_num, topo);
+  }
+  topo.push_back(u); // Read topo in reverse order.
+}
+
+//Busqueda en anchura
+void bfs(vvi &adjList, int u, vi &dist) {
+  dist[u] = 0;
+  queue<int> q;
+  q.push(u);
+  while (!q.empty()) {
+    u = q.front(); q.pop();
+    for (auto v : adjList[u]) {
+      if (dist[v] == INT_MAX) {
+        dist[v] = dist[u] + 1;
+        q.push(v);
+      }
+    }
+  }
+}
+
+//Dijkstra
+void dijkstra(int s, vector<vii> const& grafo, vi &dist) {
+    dist.assign(adjList.size(), numeric_limits<int>::max());
+    dist[s] = 0;
+    priority_queue<ii, vii, greater<ii>> pq;
+    pq.push({0,s});
+    while (!pq.empty()) {
+        ii front = pq.top(); pq.pop();
+        int d = front.first, u = front.second;
+        if (d > dist[u]) continue;
+        for (auto v : grafo[u]) {
+            if (dist[u] + v.first < dist[v.second]) {
+                dist[v.second] = dist[u] + v.first;
+               pq.push({dist[v.second], v.second});
+            }
+        }
+    }
+}
+
+//Kruskal
+typedef pair<int, int> iPair;
+struct Graph{
+	int V, E;
+	vector< pair<int, iPair> > edges;
+
+	Graph(int V, int E){
+		this->V = V;
+		this->E = E;
+	}
+
+	void addEdge(int u, int v, int w){
+		edges.push_back({w, {u, v}});
+	}
+	int kruskalMST();
+};
+
+struct DisjointSets{
+	int *parent, *rnk;
+	int n;
+	DisjointSets(int n){
+		this->n = n;
+		parent = new int[n+1];
+		rnk = new int[n+1];
+
+		for (int i = 0; i <= n; i++){
+			rnk[i] = 0;
+			parent[i] = i;
+		}
+	}
+
+	int find(int u){
+		if (u != parent[u])
+			parent[u] = find(parent[u]);
+		return parent[u];
+	}
+
+	void merge(int x, int y){
+		x = find(x), y = find(y);
+		if (rnk[x] > rnk[y])
+			parent[y] = x;
+		else
+			parent[x] = y;
+
+		if (rnk[x] == rnk[y])
+			rnk[y]++;
+	}
+};
+
+int Graph::kruskalMST(){
+	int mst_wt = 0;
+	sort(edges.begin(), edges.end());
+
+	DisjointSets ds(V);
+
+	vector< pair<int, iPair> >::iterator it;
+	for (it=edges.begin(); it!=edges.end(); it++){
+		int u = it->second.first;
+		int v = it->second.second;
+
+		int set_u = ds.find(u);
+		int set_v = ds.find(v);
+		if (set_u != set_v){
+			mst_wt += it->first;
+			ds.merge(set_u, set_v);
+		}
+	}
+}
+
