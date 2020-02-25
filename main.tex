@@ -67,10 +67,15 @@
 \usepackage[acronym]{glossaries} % Siglas y glosario
 \usepackage{acronym} % Acrónimos
 
+%\newfontfamily{\JetBrains}{JetBrains}
+
+\usepackage{fontspec}
+\setmainfont{JetBrains Mono}
 
 % Código
 \usepackage{listingsutf8}
 \lstset{
+%	basicstyle = \JetBrains,
 	inputencoding=utf8,
 	extendedchars=true,
 	literate=%
@@ -99,7 +104,9 @@
 	\renewcommand\thesection{\Alph{section}}%
 }
 
-\title{Dossier grupo C+++}
+\title{
+	\vspace{-1cm}
+	Dossier grupo C+++}
 \author{}
 \date{}
 
@@ -124,10 +131,10 @@
 %	backgroundcolor=\color{white},
 %	frame=single,
 	%
-	basicstyle=\tt,
+%	basicstyle = \fontfamily{JetBrains Mono}\selectfont,
 	commentstyle=\itshape\color{mygreen},
 	keywordstyle=\color{magenta},
-	identifierstyle=\color{cyan},
+	identifierstyle=\color{black},
 	stringstyle=\color{mypurple},
 	emph={int,char,double,float,unsigned,void,bool},	
 	emphstyle={\color{blue}},
@@ -149,15 +156,30 @@
 %	basicstyle=\tt\color{white},
 %}
 
-\vspace{-10cm}
+%\vspace{-11cm}
 \maketitle
+\vspace{-1cm}
 
-\vspace*{-1cm}
-\includegraphics[width=\textwidth]{1.png}
-\includegraphics[width=\textwidth]{2.png}\\
+%\vspace*{-1cm}
+%\includegraphics[width=\textwidth]{1.png}
+%\includegraphics[width=\textwidth]{2.png}\\
 
-\vspace*{-1cm}
-\hspace*{-2.5cm}\includegraphics[width=0.95\paperwidth]{3.png}\\
+%\vspace*{-1cm}
+%\hspace*{-2.5cm}\includegraphics[width=0.95\paperwidth]{3.png}\\
+
+
+
+Editar -- Preferencias -- Herramientas -- Terminal:
+
+\begin{center}
+	gnome-terminal -e ``/bin/bash \%c''
+\end{center}
+
+\bigskip
+
+\normalsize\lstinputlisting[language=C++]{dossier.cpp}
+
+\pagebreak
 
 \textbf{stack:} empty, size, top, push, emplace, pop, swap
 
@@ -181,7 +203,8 @@ algorithm : sort, merge, copy, move, min, max, reverse, rotate
 
 utility : pair, swap, less
 
-climits : INT\_MIN, INT\_MAX, LONG\_, LLONG\_
+climits : INT\_MIN, INT\_MAX, LONG\_, LLONG\_\\
+
 	
 	\pagebreak
 	\normalsize
@@ -189,10 +212,10 @@ climits : INT\_MIN, INT\_MAX, LONG\_, LLONG\_
 	\subsection*{Non-modifying sequence ops:}
 	
 	\textbf{all\_of}\\
-	Test condition on all elements in range
+	Test condition on all elements
 	
 	\textbf{any\_of}\\
-	Test if any element in range fulfills condition
+	Test if any element fulfills condition
 	
 	\textbf{none\_of}\\
 	Test if no elements fulfill condition
@@ -201,28 +224,28 @@ climits : INT\_MIN, INT\_MAX, LONG\_, LLONG\_
 	Apply function to range
 	
 	\textbf{find}\\
-	Find value in range
+	Find value
 	
 	\textbf{find\_if}\\
-	Find element in range
+	Find element
 	
 	\textbf{find\_if\_not}\\
-	Find element in range (negative condition)
+	Find element (negative condition)
 	
 	\textbf{find\_end}\\
-	Find last subsequence in range
+	Find last subsequence
 	
 	\textbf{find\_first\_of}\\
-	Find element from set in range
+	Find element from set
 	
 	\textbf{adjacent\_find}\\
-	Find equal adjacent elements in range
+	Find equal adjacent elements
 	
 	\textbf{count}\\
-	Count appearances of value in range
+	Count appearances of value
 	
 	\textbf{count\_if}\\
-	Return number of elements in range satisfying condition
+	Return number of elements satisfying condition
 	
 	\textbf{mismatch}\\
 	Return first position where two ranges differ
@@ -239,7 +262,9 @@ climits : INT\_MIN, INT\_MAX, LONG\_, LLONG\_
 	\textbf{search\_n}\\
 	Search range for elements
 	
-	\subsection*{Modifying sequence operations:}
+	\columnbreak
+	
+	\subsection*{Modifying sequence ops:}
 	
 	\textbf{copy}\\
 	Copy range of elements
@@ -284,13 +309,15 @@ climits : INT\_MIN, INT\_MAX, LONG\_, LLONG\_
 	Remove elements from range
 	
 	\textbf{unique}\\
-	Remove consecutive duplicates in range
+	Remove consecutive duplicates
 	
 	\textbf{reverse}\\
 	Reverse range
 	
 	\textbf{rotate}\\
 	Rotate left the elements in range
+	
+	\columnbreak
 	
 	\subsection*{Partitions:}
 	
@@ -301,7 +328,7 @@ climits : INT\_MIN, INT\_MAX, LONG\_, LLONG\_
 	Partition range in two
 	
 	\textbf{stable\_partition}\\
-	Partition range in two - stable ordering
+	Partition range in two (stable)
 	
 	\textbf{partition\_point}\\
 	Get partition point
@@ -309,7 +336,7 @@ climits : INT\_MIN, INT\_MAX, LONG\_, LLONG\_
 	\subsection*{Sorting:}
 	
 	\textbf{sort}\\
-	Sort elements in range
+	Sort elements
 	
 	\textbf{stable\_sort}\\
 	Sort elements preserving order of equivalents
@@ -321,7 +348,7 @@ climits : INT\_MIN, INT\_MAX, LONG\_, LLONG\_
 	Check whether range is sorted
 	
 	\textbf{is\_sorted\_until}\\
-	Find first unsorted element in range
+	Find first unsorted element
 	
 	\textbf{nth\_element}\\
 	Sort element in range
@@ -392,8 +419,5 @@ climits : INT\_MIN, INT\_MAX, LONG\_, LLONG\_
 	Transform range to previous permutation
 	
 	\end{multicols}
-	\pagebreak
-
-	\normalsize\lstinputlisting[language=C++]{dossier.cpp}
 
 \end{document}

@@ -1,10 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//magic
-copy(v.begin(), v.end() - 1,
- ostream_iterator<tipoDato>(cout, " "));
-
 // a % b (positive)
 int mod(int a, int b) {
   return ((a % b) + b) % b;
@@ -13,15 +9,17 @@ int mod(int a, int b) {
 // greatest common divisor
 int gcd(int a, int b) {
   if (b == 0) return a;
-  return gcd(b , a % b);
+  return gcd(b, a % b);
 }
 
-// least common multiple
+// least common multiple        (requires gcd)
 int lcm(int a, int b) {
   return a / gcd(a, b) * b ;
 }
 
-// Bezout : d = ax + by
+// Bezout : d = ax + by        (requires gcd)
+// Todas las soluciones son de la forma
+// x = x0 + M*B/d, y = y0 - M*A/d
 int bezout(int a, int b, int *x, int *y) {
   if (a == 0) {
     *x = 0;
@@ -100,7 +98,7 @@ void dfs(int u, vvi &adjList, vi &dfs_num, vi &topo) {
     if (dfs_num[v] == 0)
       dfs(v, adjList, dfs_num, topo);
   }
-  topo.push_back(u); // Read topo in reverse order.
+  topo.push_back(u); // Leer al reves para orden top.
 }
 
 //Busqueda en anchura
@@ -119,11 +117,11 @@ void bfs(vvi &adjList, int u, vi &dist) {
   }
 }
 
-//Dijkstra
-void dijkstra(int s, vector<vii> const& grafo, vi &dist) {
+//Dijkstra        (vii : vector<pair>)
+void dijkstra(int s, vector<vii> const& grafo, vector<int> &dist) {
     dist.assign(adjList.size(), numeric_limits<int>::max());
     dist[s] = 0;
-    priority_queue<ii, vii, greater<ii>> pq;
+    priority_queue<ii, vii, greater<ii>> pq; // de minimos
     pq.push({0,s});
     while (!pq.empty()) {
         ii front = pq.top(); pq.pop();
@@ -162,7 +160,6 @@ struct DisjointSets{
 		this->n = n;
 		parent = new int[n+1];
 		rnk = new int[n+1];
-
 		for (int i = 0; i <= n; i++){
 			rnk[i] = 0;
 			parent[i] = i;
@@ -205,8 +202,7 @@ int Graph::kruskalMST(){
 			ds.merge(set_u, set_v);
 		}
 	}
-}
-
+}¬\pagebreak¬
 // Floyd Warshall (para grafos dirigidos)
 void floydWarshall (int graph[][V]){
     int dist[V][V], i, j, k;
