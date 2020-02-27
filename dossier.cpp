@@ -89,10 +89,10 @@ vector<int> divisors(int n, vector<int> const& prim) {
     }
     else ++i;
   }
-}
-¬\pagebreak¬
-//Busqueda en profundidad:
-void dfs(int u, vvi &adjList, vi &dfs_num, vi &topo) {
+  return divis;
+}//¬\pagebreak¬
+//Busqueda en profundidad
+void dfs(int u, mat &adjList, vector<int> &dfs_num, vector<int> &topo) {
   dfs_num[u] = 1;
   for (int v : adjList[u]) {
     if (dfs_num[v] == 0)
@@ -102,7 +102,7 @@ void dfs(int u, vvi &adjList, vi &dfs_num, vi &topo) {
 }
 
 //Busqueda en anchura
-void bfs(vvi &adjList, int u, vi &dist) {
+void bfs(mat &adjList, int u, vector<int> &dist) {
   dist[u] = 0;
   queue<int> q;
   q.push(u);
@@ -141,12 +141,10 @@ typedef pair<int, int> iPair;
 struct Graph{
 	int V, E;
 	vector< pair<int, iPair> > edges;
-
 	Graph(int V, int E){
 		this->V = V;
 		this->E = E;
 	}
-
 	void addEdge(int u, int v, int w){
 		edges.push_back({w, {u, v}});
 	}
@@ -202,7 +200,8 @@ int Graph::kruskalMST(){
 			ds.merge(set_u, set_v);
 		}
 	}
-}¬\pagebreak¬
+	return mst_wt;
+}//¬\pagebreak¬
 // Floyd Warshall (para grafos dirigidos)
 void floydWarshall (int graph[][V]){
     int dist[V][V], i, j, k;
@@ -218,8 +217,10 @@ void floydWarshall (int graph[][V]){
         }
     }
 }
+
 //Monedas finitas.
-bool minM(vector<int> const& mon, vector<int> const& cant, int n,int P,int & sol){
+bool minM(vector<int> const& mon, vector<int> const& cant, 
+			int n,int P,int & sol){
 	vector<int> minMon(P+1,INT_MAX);
 	minMon[0] = 0;
 	for(int i = 1;i <= n;++i){
@@ -233,6 +234,30 @@ bool minM(vector<int> const& mon, vector<int> const& cant, int n,int P,int & sol
 	sol = minMon[P];
 	return sol != INT_MAX;
 }
+
+// Longest common subsequence
+string lcs(string const& x, string const& y){
+	mat m(1+x.size(),vector<int>(1+y.size()));	
+	for(size_t i = 0; i < x.size()+1; ++i)	m[i][0] = 0;
+	for(size_t j = 1; j < y.size()+1; ++j) m[0][j] = 0;
+	for(size_t i = 0; i < x.size(); ++i) {	
+		for(size_t j = 0; j < y.size(); ++j) {
+			if (x[i]==y[j]) m[i+1][j+1] = 1+m[i][j];
+			else m[i+1][j+1] = max(m[i][j+1],m[i+1][j]);
+		}
+	}
+	string s;
+	int i = x.size()-1, j = y.size()-1;
+	while(i >= 0 && j >= 0) {
+		if(m[i+1][j+1] == m[i][j+1]) i--;
+		else if(m[i+1][j+1] == m[i+1][j]) j--;
+		else {
+			s.push_back(x[i]); i--; j--;
+		}
+	}
+	reverse(s.begin(),s.end());
+	return s;
+}//¬\pagebreak¬
 //Quitar minimo numero de letras para formar palindromo
 string minP(string const& a){
 	int n = a.size();
@@ -249,7 +274,7 @@ string minP(string const& a){
 	int i = 0, j = n-1;
 	string st;
 	while(i< n && j >= 0 && i<=j){
-		if(i ==j ){ // cuando queda una sola letra solo tiene que aparecer
+		if(i == j){ // cuando queda una sola letra solo tiene que aparecer
 					//una vez en la solucion, por lo que no se añade a la pila
 			st.push_back(a[i]);
 			++i;
@@ -267,22 +292,24 @@ string minP(string const& a){
 	}
 	return st;
 }
+
 //Vuelta atras con estimacion y marcado
-void res(int k,vector<vector<int>> & mat,vector<int> & marc,long long int & mejor,long long int act){
-	for( int i = 0 ; i < mat.size(); ++i){
+void res(int k, mat & mt, vector<int> & marc,
+			long long int & mejor, long long int act){
+	for(int i = 0 ; i < mt.size(); ++i){
 		if(marc[i] < 3){
 			marc[i]++;
-			act += mat[i][k];
-			if(k == mat[0].size() - 1){
+			act += mt[i][k];
+			if(k == mt[0].size() - 1){
 				if(mejor > act)
 					mejor = act;
-			}else if( act < mejor) {
-				int est = act + estim(k,mat,marc);
-				if(est < mejor)
-					res(k+1,mat,marc,mejor,act);
+			} else if (act < mejor) {
+				int est = act + estim(k,mt,marc);
+				if (est < mejor)
+					res(k+1,mt,marc,mejor,act);
 			}
 			marc[i]--;
-			act -= mat[i][k];
+			act -= mt[i][k];
 		}
 	}
 }
