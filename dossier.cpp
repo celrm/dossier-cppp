@@ -90,7 +90,7 @@ vector<int> divisors(int n, vector<int> const& prim) {
     else ++i;
   }
   return divis;
-}//¬\pagebreak¬
+}¬\pagebreak¬
 //Busqueda en profundidad
 void dfs(int u, mat &adjList, vector<int> &dfs_num, vector<int> &topo) {
   dfs_num[u] = 1;
@@ -201,7 +201,7 @@ int Graph::kruskalMST(){
 		}
 	}
 	return mst_wt;
-}//¬\pagebreak¬
+}¬\pagebreak¬
 // Floyd Warshall (para grafos dirigidos)
 void floydWarshall (int graph[][V]){
     int dist[V][V], i, j, k;
@@ -257,7 +257,7 @@ string lcs(string const& x, string const& y){
 	}
 	reverse(s.begin(),s.end());
 	return s;
-}//¬\pagebreak¬
+}¬\pagebreak¬
 //Quitar minimo numero de letras para formar palindromo
 string minP(string const& a){
 	int n = a.size();
