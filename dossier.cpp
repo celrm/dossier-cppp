@@ -218,4 +218,72 @@ void floydWarshall (int graph[][V]){
         }
     }
 }
+//Monedas finitas.
+bool minM(vector<int> const& mon, vector<int> const& cant, int n,int P,int & sol){
+	vector<int> minMon(P+1,INT_MAX);
+	minMon[0] = 0;
+	for(int i = 1;i <= n;++i){
+		for(int j = P;j>=mon[i];--j){
+			for(int k= 0; k <= cant[i] && k*mon[i] <= j;++k){
+				if(minMon[j-k*mon[i]] != INT_MAX)
+					minMon[j] = min(minMon[j],k + minMon[j-k*mon[i]]);
+			}
+		}
+	}
+	sol = minMon[P];
+	return sol != INT_MAX;
+}
+//Quitar minimo numero de letras para formar palindromo
+string minP(string const& a){
+	int n = a.size();
+	vector<vector<int> > minPal(n,vector<int> (n,0));
+	for(int i = n-2; i>= 0;--i){
+		for(int j = i+1;j < n;++j){
+			if(a[i] == a[j])
+				minPal[i][j] = minPal[i+1][j-1];
+			else
+				minPal[i][j] = 1 + min(minPal[i][j-1],minPal[i+1][j]);
+		}
+	}
+	stack<char> s;
+	int i = 0, j = n-1;
+	string st;
+	while(i< n && j >= 0 && i<=j){
+		if(i ==j ){ // cuando queda una sola letra solo tiene que aparecer
+					//una vez en la solucion, por lo que no se añade a la pila
+			st.push_back(a[i]);
+			++i;
+		}else if(a[i] == a[j]){
+			s.push(a[i]);
+			st.push_back(a[i]);
+			++i;--j;
+		}else if(minPal[i][j] == 1 + minPal[i+1][j])
+			++i;
+		else
+			--j;
+	}
+	while(!s.empty()){
+		st.push_back(s.top()); s.pop();
+	}
+	return st;
+}
+//Vuelta atras con estimacion y marcado
+void res(int k,vector<vector<int>> & mat,vector<int> & marc,long long int & mejor,long long int act){
+	for( int i = 0 ; i < mat.size(); ++i){
+		if(marc[i] < 3){
+			marc[i]++;
+			act += mat[i][k];
+			if(k == mat[0].size() - 1){
+				if(mejor > act)
+					mejor = act;
+			}else if( act < mejor) {
+				int est = act + estim(k,mat,marc);
+				if(est < mejor)
+					res(k+1,mat,marc,mejor,act);
+			}
+			marc[i]--;
+			act -= mat[i][k];
+		}
+	}
+}
 
